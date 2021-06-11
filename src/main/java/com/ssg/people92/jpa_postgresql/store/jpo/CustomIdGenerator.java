@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /*
-* PAYMENT 테이블 PMT_ID 키 생성
+* 사용자정의 키 생성
 * */
 public class CustomIdGenerator implements IdentifierGenerator {
     @Override

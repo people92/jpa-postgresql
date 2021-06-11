@@ -1,6 +1,7 @@
 package com.ssg.people92.jpa_postgresql.store.jpo;
 
 import com.ssg.people92.jpa_postgresql.domain.entity.PaymentDto;
+import com.ssg.people92.jpa_postgresql.domain.entity.SequencePrefixConstants;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,8 +20,10 @@ public class PaymentJpo extends AuditJpo {
 
     @Id
     @Column(name = "PMT_ID")
-    @GenericGenerator(name = "PMT_ID", strategy = "com.ssg.people92.jpa_postgresql.store.jpo.CustomIdGenerator")
-    @GeneratedValue(generator = "PMT_ID")
+    @GeneratedValue(generator = "pmtId-generator")
+    @GenericGenerator(name = "pmtId-generator",
+            parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = SequencePrefixConstants.PAYMENT_KEY),
+            strategy = "com.ssg.people92.jpa_postgresql.store.jpo.MultiCustomIdGenerator")
     private String pmtId; //결제ID
 
     @Column(name = "MBR_ID", nullable = false)
